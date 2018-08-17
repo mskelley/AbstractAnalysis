@@ -66,13 +66,19 @@ for element in soup.find_all(class_='article panel article-result'):
 	authors = element.find(class_='authors').get_text()
 	link = element.a['href']
 	# create class instances with articles published today:
-	if date_tup[0] == "2": #### NOTE:2 is placeholder for now ... will be the current date ####
+	if date_tup[0] == str(today[2]): #### NOTE:2 is placeholder for now ... will be the current date ####
 		element_list.append(Article("PRL", title, authors, date_tup, link))
 	#end_if
 #end_for
 
 ## TESTING: ##
-for a in element_list:
+num_found = len(element_list)
+print "Found {0:d} articles".format(num_found)
+if num_found == 0:
+    #print soup
+    pass
+else:
+    for a in element_list:
 	a.info_str()
 #end_if
 
